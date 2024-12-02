@@ -108,6 +108,7 @@ const Dashboard = () => {
                   },
                ].map(({ label, icon: Icon, onClick, bgClass }) => (
                   <button
+                     onClick={onClick}
                      key={label}
                      style={{
                         color: "#fff",
