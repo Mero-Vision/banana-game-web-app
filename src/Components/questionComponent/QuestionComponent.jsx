@@ -2,6 +2,7 @@ import axios from "axios";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import "../styles.css";
 
 const QuestionImage = () => {
    const [imageUrl, setImageUrl] = useState("");
@@ -112,11 +113,11 @@ const QuestionImage = () => {
 
    return (
       <div
-         style={{
-            // background: "#193347",
-            background: "linear-gradient(90deg, #5E2D99, #091B2A)",
-         }}
-         className="flex flex-col items-center justify-center p-8 space-y-6 bg-gradient-to-br min-h-screen"
+         // style={{
+         //    // background: "#193347",
+         //    background: "linear-gradient(90deg, #5E2D99, #091B2A)",
+         // }}
+         className="bgContainer flex flex-col items-center justify-center p-8 space-y-6 bg-gradient-to-br min-h-screen"
       >
          <h2
             style={{ fontWeight: "500" }}
@@ -175,9 +176,16 @@ const QuestionImage = () => {
                   className="w-full max-w-md px-4 py-3 text-gray-900 bg-white rounded-lg shadow-lg focus:ring-2 focus:ring-pink-300 focus:outline-none"
                />
                <motion.button
-                  style={{ width: "100%" }}
                   type="submit"
-                  className="bg-indigo-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-indigo-500 active:scale-95"
+                  style={{
+                     color: "#fff",
+                     border: "1px solid hsla(0, 0%, 97%, 0.3)",
+                     background: "#111",
+                     width: "100%",
+                  }}
+                  className={`dashboardBtns w-full flex items-center justify-center px-2 py-3 font-semibold text-white rounded-lg shadow-md 
+               
+                     transition duration-300 transform active:scale-95`}
                >
                   Check Answer
                </motion.button>

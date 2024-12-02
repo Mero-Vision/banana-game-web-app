@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import "../styles.css";
 
 const Leaderboard = () => {
    const [rankedUsers, setRankedUsers] = useState([]);
@@ -51,7 +52,7 @@ const Leaderboard = () => {
 
    if (loading) {
       return (
-         <div className="flex items-center justify-center h-screen">
+         <div className="bgContainer flex items-center justify-center h-screen">
             <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-green-500"></div>
          </div>
       );
@@ -59,7 +60,7 @@ const Leaderboard = () => {
 
    if (error) {
       return (
-         <div className="flex items-center justify-center h-screen">
+         <div className="bgContainer flex items-center justify-center h-screen">
             <div className="text-red-500 text-center">
                <p className="text-xl">{error}</p>
                <button
@@ -74,7 +75,7 @@ const Leaderboard = () => {
    }
 
    return (
-      <main className="p-6">
+      <main className="p-6 bgContainer">
          <div className="mb-6 text-center bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 py-6 rounded shadow-lg">
             <h1 className="text-4xl font-bold text-white">
                🎮 Leaderboard 🎮

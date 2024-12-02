@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaHistory } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import "../styles.css";
 
 const GameHistory = () => {
+   const navigate = useNavigate();
    const [history, setHistory] = useState([]);
    const [error, setError] = useState(null);
    const [loading, setLoading] = useState(true);
@@ -76,109 +79,145 @@ const GameHistory = () => {
       });
    };
 
+   const backHome = () => {
+      navigate(`/dashboard`);
+   };
+
    return (
       <div
-         style={{
-            background: "linear-gradient(90deg, #5E2D99, #091B2A)",
-         }}
-         className="bg-gradient-to-r  min-h-screen p-6 flex justify-center items-center"
+         // style={{
+         //    background: "linear-gradient(90deg, #5E2D99, #091B2A)",
+         // }}
+
+         className="bgContainer  bg-gradient-to-r  min-h-screen p-6 flex justify-center items-center"
       >
          <div
-            style={{
-               background: "linear-gradient(90deg, #2e5270, #5E2D99)",
-            }}
-            className="max-w-4xl w-full bg-white shadow-2xl rounded-2xl overflow-hidden"
+            style={{ width: "100%" }}
+            className="max-w-4xl min-w-4xl"
          >
-            <div className="bg-gradient-to- text-white px-6 py-4 flex items-center justify-between">
-               <div className="flex items-center">
-                  <FaHistory className="mr-2 text-2xl" />
-                  <h1 className="text-2xl font-bold">Game History</h1>
+            <button
+               style={{
+                  color: "#fff",
+                  border: "1px solid hsla(0, 0%, 97%, 0.3)",
+                  background: "#111",
+                  marginBottom: "20px",
+               }}
+               onClick={backHome}
+               className={`dashboardBtnsHistoryRefresh  flex items-center justify-center px-3 py-2 font-semibold text-white rounded-lg shadow-md 
+               
+                     transition duration-300 transform active:scale-95`}
+            >
+               Back to menu
+            </button>
+            <div
+               style={{
+                  background:
+                     "linear-gradient(90deg, #530718, #0F020E)",
+               }}
+               className="max-w-4xl min-w-4xl w-full bg-white shadow-2xl rounded-2xl overflow-hidden"
+            >
+               <div className="bg-gradient-to- text-white px-6 py-4 flex items-center justify-between">
+                  <div className="flex items-center">
+                     <FaHistory
+                        className="mr-2 text-2xl"
+                        style={{ color: "#fff" }}
+                     />
+                     <h1 className="text-2xl font-bold dashboardBtnsHistory">
+                        Game History
+                     </h1>
+                  </div>
+                  <button
+                     style={{
+                        color: "#fff",
+                        border: "1px solid hsla(0, 0%, 97%, 0.3)",
+                        background: "#111",
+                     }}
+                     onClick={fetchGameHistory}
+                     className={`dashboardBtnsHistoryRefresh  flex items-center justify-center px-3 py-2 font-semibold text-white rounded-lg shadow-md 
+               
+                     transition duration-300 transform active:scale-95`}
+                  >
+                     Refresh
+                  </button>
                </div>
-               <button
-                  style={{ background: "#2F5170" }}
-                  onClick={fetchGameHistory}
-                  className=" text-white px-4 py-2 rounded-lg text-sm shadow-md transition duration-300"
-               >
-                  Refresh
-               </button>
-            </div>
 
-            {error && (
-               <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 my-4 mx-6 rounded-md">
-                  <p>{error}</p>
-               </div>
-            )}
+               {error && (
+                  <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 my-4 mx-6 rounded-md">
+                     <p>{error}</p>
+                  </div>
+               )}
 
-            {loading ? (
-               <div className="p-6 text-center">
-                  <p className="text-gray-600 text-lg">
-                     Loading game history...
-                  </p>
-               </div>
-            ) : (
-               <div className="overflow-x-auto">
-                  <table className="min-w-full text-left text-sm">
-                     <thead>
-                        <tr
-                           style={{
-                              background: "#d4eafc",
-                              color: "#0A1B2B",
-                           }}
-                           className=" text-yellow-900 text-sm"
-                        >
-                           <th className="py-3 px-6 font-medium">
-                              Date
-                           </th>
-                           <th className="py-3 px-6 font-medium">
-                              Total Questions
-                           </th>
-                           <th className="py-3 px-6 font-medium">
-                              Score
-                           </th>
-                           <th className="py-3 px-6 font-medium">
-                              Remarks
-                           </th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        {history && history.length > 0 ? (
-                           history.map((item, index) => (
-                              <tr
-                                 key={item.id || index}
-                                 className={`${
-                                    index % 2 === 0
-                                       ? "bg-yellow-50"
-                                       : "bg-yellow-100"
-                                 } hover:bg-yellow-200 transition duration-200`}
-                              >
-                                 <td className="py-4 px-6 border-b border-gray-200 text-gray-700">
-                                    {formatDate(item.gamedate)}
-                                 </td>
-                                 <td className="py-4 px-6 border-b border-gray-200 text-gray-700">
-                                    {item.total_questions}
-                                 </td>
-                                 <td className="py-4 px-6 border-b border-gray-200 text-gray-700">
-                                    {item.score}
-                                 </td>
-                                 <td className="py-4 px-6 border-b border-gray-200 text-gray-700">
-                                    {item.remarks}
+               {loading ? (
+                  <div className="p-6 text-center">
+                     <p className="text-gray-600 text-lg">
+                        Loading game history...
+                     </p>
+                  </div>
+               ) : (
+                  <div className="overflow-x-auto">
+                     <table className="min-w-full text-left text-sm">
+                        <thead>
+                           <tr
+                              style={{
+                                 background: "#D4A079",
+                                 color: "#0A1B2B",
+                              }}
+                              className=" text-yellow-900 text-sm"
+                           >
+                              <th className="py-3 px-6 font-medium">
+                                 Date
+                              </th>
+                              <th className="py-3 px-6 font-medium">
+                                 Total Questions
+                              </th>
+                              <th className="py-3 px-6 font-medium">
+                                 Score
+                              </th>
+                              <th className="py-3 px-6 font-medium">
+                                 Remarks
+                              </th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           {history && history.length > 0 ? (
+                              history.map((item, index) => (
+                                 <tr
+                                    key={item.id || index}
+                                    className={`${
+                                       index % 2 === 0
+                                          ? "bg-yellow-50"
+                                          : "bg-yellow-100"
+                                    } hover:bg-yellow-200 transition duration-200`}
+                                 >
+                                    <td className="py-4 px-6 border-b border-gray-200 text-gray-700">
+                                       {formatDate(item.gamedate)}
+                                    </td>
+                                    <td className="py-4 px-6 border-b border-gray-200 text-gray-700">
+                                       {item.total_questions}
+                                    </td>
+                                    <td className="py-4 px-6 border-b border-gray-200 text-gray-700">
+                                       {item.score}
+                                    </td>
+                                    <td className="py-4 px-6 border-b border-gray-200 text-gray-700">
+                                       {item.remarks}
+                                    </td>
+                                 </tr>
+                              ))
+                           ) : (
+                              <tr>
+                                 <td
+                                    colSpan="4"
+                                    className="py-6 px-6 text-center text-white"
+                                 >
+                                    No game history available
                                  </td>
                               </tr>
-                           ))
-                        ) : (
-                           <tr>
-                              <td
-                                 colSpan="4"
-                                 className="py-6 px-6 text-center text-white"
-                              >
-                                 No game history available
-                              </td>
-                           </tr>
-                        )}
-                     </tbody>
-                  </table>
-               </div>
-            )}
+                           )}
+                        </tbody>
+                     </table>
+                  </div>
+               )}
+            </div>
          </div>
       </div>
    );

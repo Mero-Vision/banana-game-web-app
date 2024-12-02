@@ -1,0 +1,61 @@
+.bgContainer {
+   background: url(../assets/gameBg.jpg);
+   background-size: cover;
+   background-position: center;
+}
+
+.dashboardBtnsHeader {
+   font-family: "Press Start 2P", system-ui !important;
+   /* font-size: 12px;
+   font-weight: 500; */
+}
+.dashboardBtnsHistory {
+   font-family: "Press Start 2P", system-ui !important;
+   color: #fff;
+   font-size: 18px;
+   font-weight: 600;
+}
+.dashboardBtns {
+   font-family: "Press Start 2P", system-ui !important;
+   font-size: 12px;
+   font-weight: 500;
+}
+.dashboardBtnsHistoryRefresh {
+   font-family: "Press Start 2P", system-ui !important;
+   font-size: 8px;
+   font-weight: 500;
+}
+.dashboardBtns:hover {
+   background-color: #333 !important;
+}
+.dashboardBtnsHistoryRefresh:hover {
+   background-color: #333 !important;
+}
+.dashboardBtns::before {
+   content: "";
+   display: block;
+   position: absolute;
+   height: 50%;
+   background: linear-gradient(
+      hsla(0, 0%, 97%, 0.3),
+      hsla(0, 0%, 100%, 0)
+   );
+   top: 0px;
+   left: 0px;
+   right: 0px;
+   border-radius: 30px;
+}
+.dashboardBtnsHistoryRefresh::before {
+   content: "";
+   display: block;
+   position: absolute;
+   height: 50%;
+   background: linear-gradient(
+      hsla(0, 0%, 97%, 0.3),
+      hsla(0, 0%, 100%, 0)
+   );
+   top: 0px;
+   left: 0px;
+   right: 0px;
+   border-radius: 30px;
+}
