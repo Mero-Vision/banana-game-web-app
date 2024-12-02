@@ -24,11 +24,11 @@ function App() {
 
          <Router>
             <Routes>
-               <Route path="/dashboard" element={<LoginPage />} />
+               <Route path="/" element={<LoginPage />} />
                <Route path="/signup" element={<SignupPage />} />
 
                <Route path="/question" element={<QuestionImage />} />
-               <Route path="/" element={<Dashboard />} />
+               <Route path="/dashboard" element={<Dashboard />} />
                {/* <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} /> */}
                <Route path="/history" element={<GameHistory />} />
                <Route path="/leaderboard" element={<Leaderboard />} />
