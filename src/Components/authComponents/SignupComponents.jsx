@@ -51,7 +51,7 @@ const SignupPage = () => {
       if (Object.keys(validationErrors).length === 0) {
          try {
             const response = await axios.post(
-               "http://localhost:8000/register/",
+               "http://127.0.0.1:8002/api/user/",
                {
                   username: userData.username,
                   email: userData.email,
