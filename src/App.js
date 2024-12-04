@@ -1,8 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import QuestionImage from "./Components/GameComponent/QuestionComponent";
-// import Sidebar from './Components/sidebarComponent/sidebarComponent';
-// import Dashboard from './Components/DashComponents/DashboardComponent';
+import { useEffect } from "react";
 import LoginPage from "./Components/authComponents/LoginComponents";
 import SignupPage from "./Components/authComponents/SignupComponents";
 import Dashboard from "./Components/Dashboard/Dashboard";
@@ -11,16 +10,11 @@ import Leaderboard from "./Components/leaderboardComponents/leaderboard";
 import EasyGame from "./Components/GameComponent/EasyGame";
 import MediumGame from "./Components/GameComponent/MediumGame";
 import HardGame from "./Components/GameComponent/HardGame";
-// import ProtectedRoute from './protectedRoutes/protectedRoutes';
+
 
 function App() {
   return (
     <>
-      {/* <div className="flex">
-      <Sidebar />
-      <Dashboard />
-    </div> */}
-
       <Router>
         <Routes>
           <Route path="/" element={<LoginPage />} />
@@ -40,5 +34,7 @@ function App() {
     </>
   );
 }
+
+
 
 export default App;

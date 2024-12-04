@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "../styles.css";
 
+
 const EasyGame = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState("");
@@ -15,7 +16,11 @@ const EasyGame = () => {
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [score, setScore] = useState(0);
 
-  const navigate = useNavigate(); // Initialize navigate function
+  useEffect(() => {
+    document.title = "Easy Game";
+  }, []);
+
+  const navigate = useNavigate(); 
 
   const fetchQuestionImage = async () => {
     try {
@@ -112,10 +117,6 @@ const EasyGame = () => {
 
   return (
     <div
-      // style={{
-      //    // background: "#193347",
-      //    background: "linear-gradient(90deg, #5E2D99, #091B2A)",
-      // }}
       className="bgContainer flex flex-col items-center justify-center p-8 space-y-6 bg-gradient-to-br min-h-screen"
     >
       <h2
@@ -241,5 +242,8 @@ const EasyGame = () => {
     </div>
   );
 };
+
+
+
 
 export default EasyGame;

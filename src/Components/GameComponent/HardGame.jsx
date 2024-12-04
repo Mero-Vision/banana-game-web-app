@@ -15,6 +15,10 @@ const HardGame = () => {
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [score, setScore] = useState(0);
 
+  useEffect(() => {
+    document.title = "Hard Game";
+  }, []);
+
   const navigate = useNavigate();
 
   const fetchQuestionImage = async () => {
@@ -112,10 +116,6 @@ const HardGame = () => {
 
   return (
     <div
-      // style={{
-      //    // background: "#193347",
-      //    background: "linear-gradient(90deg, #5E2D99, #091B2A)",
-      // }}
       className="bgContainer flex flex-col items-center justify-center p-8 space-y-6 bg-gradient-to-br min-h-screen"
     >
       <h2

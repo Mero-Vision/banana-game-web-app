@@ -17,6 +17,10 @@ const MediumGame = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    document.title = "Medium Game";
+  }, []);
+
   const fetchQuestionImage = async () => {
     try {
       const response = await axios.get(
@@ -107,15 +111,11 @@ const MediumGame = () => {
   };
 
   const handleCloseGame = () => {
-    navigate("/dashboard"); // Redirect to the dashboard
+    navigate("/dashboard"); 
   };
 
   return (
     <div
-      // style={{
-      //    // background: "#193347",
-      //    background: "linear-gradient(90deg, #5E2D99, #091B2A)",
-      // }}
       className="bgContainer flex flex-col items-center justify-center p-8 space-y-6 bg-gradient-to-br min-h-screen"
     >
       <h2
