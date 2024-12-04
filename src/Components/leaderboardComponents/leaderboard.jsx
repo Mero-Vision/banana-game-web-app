@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../utils/axios";
 import React, { useEffect, useState } from "react";
 import "../styles.css";
 
@@ -12,43 +12,40 @@ const Leaderboard = () => {
    }, []);
 
    const fetchLeaderboardData = async () => {
-      const token = localStorage.getItem("token");
-
+      const token = localStorage.getItem("authToken");
+    
       if (!token) {
-         setError("No authentication token found. Please log in.");
-         setLoading(false);
-         return;
+        console.error("Token is missing. Please login first.");
+        return;
       }
-
+    
       try {
-         const response = await axios.get(
-            "http://localhost:8000/api/leaderboard/",
-            {
-               headers: {
-                  Authorization: `Token ${token}`,
-                  "Content-Type": "application/json",
-               },
-            }
-         );
-
-         const transformedData = response.data.data.map((user) => ({
-            username: user.student__username,
-            email: user.student__email,
-            gamesPlayed: user.games_played || 0,
-            score: user.rank_score || 0,
-         }));
-
-         setRankedUsers(transformedData);
-         setError(null);
+        const response = await axios.get("leader-board/", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+    
+     
+        const transformedData = response.data.data.map((user) => ({
+          username: user.username,         
+          email: user.email,               
+          gamesPlayed: user.games_played || 0, 
+          score: user.rank_score || 0,       
+        }));
+    
+        setRankedUsers(transformedData);  // Set transformed data
+        setError(null);
       } catch (error) {
-         setError(
-            error.response?.data?.message ||
-               "Error fetching leaderboard data"
-         );
+        setError(
+          error.response?.data?.message || "Error fetching leaderboard data"
+        );
       } finally {
-         setLoading(false);
+        setLoading(false);
       }
-   };
+    };
+    
 
    if (loading) {
       return (
