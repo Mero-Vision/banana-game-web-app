@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../utils/axios";
 import React, { useEffect, useState } from "react";
 import {
    FaListAlt,
@@ -26,17 +26,19 @@ const Dashboard = () => {
 
       const fetchUserProfile = async () => {
          try {
-            const token = localStorage.getItem("token");
+            const token = localStorage.getItem("authToken");
+
             if (!token) {
-               navigate("/");
-               return;
+                console.error("Token is missing. Please login first.");
+                return;
             }
 
             const response = await axios.get(
-               "http://localhost:8000/api/user/profile/",
+               "profile/",
                {
                   headers: {
-                     Authorization: `Token ${token}`,
+                     "Content-Type": "application/json",
+                     Authorization: `Bearer ${token}`,
                   },
                }
             );

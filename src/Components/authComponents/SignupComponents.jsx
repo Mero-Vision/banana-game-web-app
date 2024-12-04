@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../utils/axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -51,7 +51,7 @@ const SignupPage = () => {
       if (Object.keys(validationErrors).length === 0) {
          try {
             const response = await axios.post(
-               "http://127.0.0.1:8002/api/user/",
+               "user/",
                {
                   username: userData.username,
                   email: userData.email,
