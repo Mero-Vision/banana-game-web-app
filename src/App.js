@@ -13,6 +13,11 @@ import HardGame from "./Components/GameComponent/HardGame";
 
 
 function App() {
+
+  useEffect(() => {
+    document.title = "Banana Game"; 
+  }, []);
+
   return (
     <>
       <Router>
